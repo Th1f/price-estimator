@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+/* ── Commissioner ───────────────────────────────────────────────────────── */
+@font-face { font-family: 'Commissioner'; font-style: normal; font-weight: 300; font-display: swap; src: url('/fonts/commissioner-normal-300.woff2') format('woff2'); }
+@font-face { font-family: 'Commissioner'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/commissioner-normal-400.woff2') format('woff2'); }
+@font-face { font-family: 'Commissioner'; font-style: normal; font-weight: 500; font-display: swap; src: url('/fonts/commissioner-normal-500.woff2') format('woff2'); }
+@font-face { font-family: 'Commissioner'; font-style: normal; font-weight: 600; font-display: swap; src: url('/fonts/commissioner-normal-600.woff2') format('woff2'); }
+
+/* ── Design tokens (iridescent-cloud-edge) ──────────────────────────────────
+   Exposed to Tailwind: bg-cloud, text-slate-deep, border-mist-2,
+   rounded-ctl, shadow-soft, font-sans, ease-glide, etc.                      */
+@theme {
+  /* Surfaces & ink */
+  --color-cloud: #fbfbfc;
+  --color-mist: #f2f4f7;
+  --color-mist-2: #e6e9ef;
+  --color-slate: #4a5462;
+  --color-slate-deep: #2b3240;
+
+  /* Spectrum */
+  --color-mint: #a8e6cf;
+  --color-rose: #f3b7c9;
+  --color-violet: #8b7bd8;
+  --color-violet-ink: #5a4ab8;
+
+  /* Secondary ink used for placeholders, absent states and errors */
+  --color-placeholder: #6f7885;
+  --color-absent: #6a7380;
+  --color-danger: #a1364b;
+
+  /* Type */
+  --font-sans: "Commissioner", "Segoe UI", system-ui, sans-serif;
+
+  /* Radii */
+  --radius-ctl: 12px;    /* inputs, buttons */
+  --radius-panel: 16px;  /* the inputs panel */
+
+  /* Shadows */
+  --shadow-soft: 0 8px 24px rgba(74, 84, 98, 0.06), 0 1px 2px rgba(74, 84, 98, 0.06);
+  --shadow-lift: 0 10px 28px rgba(74, 84, 98, 0.10), 0 1px 2px rgba(74, 84, 98, 0.06);
+
+  /* Motion — the band, the ticks and the count-up all ride this curve */
+  --ease-glide: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Not a Tailwind namespace — reach for it with
+   bg-[image:var(--spectrum)] or border-image. */
+:root {
+  --spectrum: linear-gradient(90deg, var(--color-mint), var(--color-rose), var(--color-violet));
+}
+
+/* ── Base ───────────────────────────────────────────────────────────────── */
+@layer base {
+  html {
+    color-scheme: light;
+    scrollbar-color: var(--color-mist-2) var(--color-cloud);
+  }
+
+  body {
+    margin: 0;
+    background: var(--color-cloud);
+    color: var(--color-slate);
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1.5;
+    font-variant-numeric: lining-nums tabular-nums;
+    -webkit-font-smoothing: antialiased;
+    padding: 0 clamp(16px, 4vw, 56px) 64px;
+  }
+
+  ::selection { background: var(--color-violet); color: #fff; }
+
+  :focus-visible {
+    outline: 2px solid var(--color-violet-ink);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-mist-2);
+    border-radius: 10px;
+    border: 2px solid var(--color-cloud);
+  }
+  ::-webkit-scrollbar-track { background: var(--color-cloud); }
+
+  input, select, button { font: inherit; color: inherit; }
+  button { cursor: pointer; }
+}
