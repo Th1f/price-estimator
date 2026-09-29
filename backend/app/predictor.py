@@ -1,5 +1,3 @@
-"""Loads the trained pipeline and turns inputs into a price."""
-
 import bisect
 import json
 from pathlib import Path
@@ -36,6 +34,6 @@ def predict(suburb: str, bedrooms: int, bathrooms: int) -> tuple[float, float, f
 
     # Look up the error range for this price's bracket.
     bracket = _range["brackets"][bisect.bisect_right(_range["edges"], price)]
-    low = price + bracket["below"]
-    high = price + bracket["above"]
+    low = price * bracket["below"]
+    high = price * bracket["above"]
     return price, low, high
